@@ -1,0 +1,93 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="repositorio" type="repositorioType"/>
+  <xs:complexType name="listaTemasType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:IDREFS" name="id"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="cursoType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="titulo"/>
+      <xs:element name="nivel">
+	    <xs:simpleType>
+		  <xs:restriction base="xs:string">
+		    <xs:enumeration value="primaria"/>
+			<xs:enumeration value="secundaria"/>
+			<xs:enumeration value="bachillerato"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	  </xs:element>
+      <xs:element type="listaTemasType" name="listaTemas" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:ID" name="id"/>
+  </xs:complexType>
+  <xs:complexType name="temaType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="titulo"/>
+      <xs:element name="listaRecursos" minOccurs="0">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:string">
+              <xs:attribute type="xs:IDREFS" name="id" use="optional"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:ID" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="listaRecursosType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:IDREFS" name="id" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="listaEjerciciosType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:IDREFS" name="idEj"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="videoType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="formato"/>
+      <xs:element type="xs:string" name="duracion"/>
+      <xs:element type="xs:string" name="uri"/>
+      <xs:element type="listaEjerciciosType" name="listaEjercicios" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="recursoType">
+    <xs:sequence>
+	  <xs:choice>
+        <xs:element type="videoType" name="video" minOccurs="0"/>
+        <xs:element type="ejercicioType" name="ejercicio" minOccurs="0"/>
+      </xs:choice>
+      <xs:element type="xs:string" name="titulo"/>
+    </xs:sequence>
+    <xs:attribute type="xs:ID" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="solucionType">
+    <xs:sequence>
+      <xs:element type="xs:byte" name="valor"/>
+      <xs:element type="xs:string" name="desarrollo"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ejercicioType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="enunciado"/>
+      <xs:element type="solucionType" name="solucion"/>
+    </xs:sequence>
+    <xs:attribute type="xs:ID" name="idEj"/>
+  </xs:complexType>
+  <xs:complexType name="repositorioType">
+    <xs:sequence>
+      <xs:element type="cursoType" name="curso"/>
+      <xs:element type="temaType" name="tema" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="recursoType" name="recurso" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

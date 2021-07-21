@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repositorio xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="repositorio.xsd">
+  <curso id="Curso12021">
+	<titulo>Matematicas</titulo>
+	<nivel>primaria</nivel>
+	<listaTemas id="T01 T02">Temas del curso</listaTemas>
+  </curso>
+  <tema id="T01">
+	<titulo>Algebra</titulo>
+	<listaRecursos>Recursos del tema 1</listaRecursos>
+  </tema>
+  <tema id="T02">
+	<titulo>Calculo</titulo>
+	<listaRecursos id="Recurso001 Recurso002">Recursos del tema 2</listaRecursos>
+  </tema>
+  <recurso id="Recurso001">
+	<video>
+	<formato>mp4</formato>
+	<duracion>10:00</duracion>
+	<uri>URI/video</uri>
+	<listaEjercicios idEj="ej01">Ejercicios del video</listaEjercicios>
+	</video>
+	<titulo>sumas</titulo>
+  </recurso>
+  <recurso id="Recurso002">
+	<ejercicio idEj="ej01">
+	<enunciado>enunciado del ejercicio 1.1</enunciado>
+	<solucion>
+	  <valor>0</valor>
+	  <desarrollo>desarrollo del ejercicio</desarrollo>
+	</solucion>
+	</ejercicio>
+	<titulo>restas</titulo>
+  </recurso>
+</repositorio>
